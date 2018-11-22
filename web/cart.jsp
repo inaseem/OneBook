@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +15,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
+        ${cart.getItems()}
         <div class="container">
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
@@ -25,34 +28,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach var="item" items="${cart.getItems()}">
                     <tr>
                         <td data-th="Product">
                             <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                                <div class="col-sm-2 hidden-xs"><img src="${item.getBook().getImage()}" alt="..." class="img-responsive"/></div>
                                 <div class="col-sm-10">
-                                    <h4 class="nomargin">Product 1</h4>
-                                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                    <h4 class="nomargin">${item.getBook().getTitle()}</h4>
+                                    <p>${item.getBook().getAuthor()}</p>
                                 </div>
                             </div>
                         </td>
-                        <td data-th="Price">$1.99</td>
+                        <td data-th="Price">${item.getBook().getPrice()}</td>
                         <td data-th="Quantity">
-                            <input type="number" class="form-control text-center" value="1">
+                            <input type="number" class="form-control text-center" value="${item.getQuantity()}">
                         </td>
                         <td data-th="Subtotal" class="text-center">1.99</td>
                         <td class="actions" data-th="">
                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>Delete</button>								
                         </td>
                     </tr>
+                    </c:forEach>
                 </tbody>
                 <tfoot>
                     <tr class="visible-xs">
-                        <td class="text-center"><strong>Total 1.99</strong></td>
+                        <td class="text-center"><strong>Total ${cart.getTotal()}</strong></td>
                     </tr>
                     <tr>
                         <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                         <td colspan="2" class="hidden-xs"></td>
-                        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+                        <td class="hidden-xs text-center"><strong>Total ${cart.getTotal()}</strong></td>
                         <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
                     </tr>
                 </tfoot>
