@@ -39,9 +39,9 @@ public class RegisterAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         RegisterBean register = (RegisterBean) form;
-        DataModel model=new DataModel();
+        DataModel model = new DataModel();
         if (register.getPwd().equals(register.getRepwd())) {
-            if (isRegistered(register.getUsername(), register.getPwd(),model)) {
+            if (isRegistered(register.getUsername(), register.getPwd(), model)) {
                 SUCCESS = "registrationSuccess";
             } else {
                 SUCCESS = "registrationFailed";
@@ -55,7 +55,7 @@ public class RegisterAction extends org.apache.struts.action.Action {
         return mapping.findForward(SUCCESS);
     }
 
-    private boolean isRegistered(String username, String password,DataModel model) {
+    private boolean isRegistered(String username, String password, DataModel model) {
         boolean isRegistered = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -67,7 +67,7 @@ public class RegisterAction extends org.apache.struts.action.Action {
                     isRegistered = false;
                     model.setMessage("Username Already Taken");
                 } else {
-                    isRegistered = insert(conn,username,password,model);
+                    isRegistered = insert(conn, username, password, model);
                 }
             }
             conn.close();
@@ -78,21 +78,21 @@ public class RegisterAction extends org.apache.struts.action.Action {
         return isRegistered;
     }
 
-    private boolean insert(Connection conn, String username, String password,DataModel model) {
-        boolean inserted = false;
+    private boolean insert(Connection conn, String username, String password, DataModel model) {
+        boolean inserted;
         try {
             PreparedStatement ps = conn.prepareStatement("insert into users(username,password) values(?,?)");
             ps.setString(1, username);
             ps.setString(2, password);
-            int i=ps.executeUpdate();
-            if(i>0){
-                inserted=true;
-            }else{
-                inserted=false;
+            int i = ps.executeUpdate();
+            if (i > 0) {
+                inserted = true;
+            } else {
+                inserted = false;
                 model.setMessage("User registration ecountered an error.");
             }
         } catch (Exception e) {
-            inserted=false;
+            inserted = false;
             model.setMessage(e.getMessage());
         }
         return inserted;

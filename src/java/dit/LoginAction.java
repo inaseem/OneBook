@@ -56,6 +56,7 @@ public class LoginAction extends org.apache.struts.action.Action {
             model.hasError(true);
             SUCCESS="loginFailed";
         }
+        request.setAttribute("model", model);
         return mapping.findForward(SUCCESS);
     }
     

@@ -21,11 +21,11 @@
 
     <action-mappings>
         <action input="/Register.jsp" name="RegisterBean" path="/register" scope="session" type="dit.RegisterAction">
-            <forward name="registrationSuccess" path="/index.jsp"/>
+            <forward name="registrationSuccess" path="/store.jsp"/>
             <forward name="registrationFailed" path="/Register.jsp"/>
         </action>
         <action input="/Login.jsp" name="LoginBean" path="/login" scope="session" type="dit.LoginAction">
-            <forward name="loginSuccess" path="/index.jsp"/>
+            <forward name="loginSuccess" path="/store.jsp"/>
             <forward name="loginFailed" path="/Login.jsp"/>
         </action>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
