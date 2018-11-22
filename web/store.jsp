@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,45 +35,47 @@
         <sql:query dataSource="${webappDataSource}"
                    sql="select * from books" var="result" />
         <div class="d-flex flex-wrap order-md-4 order-sm-1">
-
             <c:forEach var="row" items="${result.rows}">
-                <div class="item">
-                    <div class="item-inner best-seller">
-                        <div class="item-img">
-                            <div class="item-img-info"><a title="${row.title}" class="product-image best150" href="details.jsp?id=${row.id}">
+                <t:form action="/details">
+                    <div class="item">
+                        <div class="item-inner best-seller">
+                            <div class="item-img">
+                                <div class="item-img-info">
                                     <img src="${row.image}" data-src="https://books.google.com/books/content?id=iTGx-wkaY5gC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" width="100px" height="150"> </a>
-                                <div class="jtv-box-hover">
-                                    <ul class="add-to-links">
-                                    </ul>
+                                    <div class="jtv-box-hover">
+                                        <ul class="add-to-links">
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="info-inner">
-                                <div class="item-title">
-                                    <h6 class="ellipsis" style="font-size: 13px">
-                                        <a title="${row.title}" href="details.jsp?id=${row.id}"> ${row.title} </a>
-                                    </h6>
-                                </div>
-                                <div class="item-content">
-                                    <div>
-                                        <p class="ellipsis" style="font-size: 13px">
-                                            by ${row.author}</p>
+                            <div class="item-info">
+                                <div class="info-inner">
+                                    <div class="item-title">
+                                        <h6 class="ellipsis" style="font-size: 13px">
+                                            <input type="hidden" name="productId" value="${row.id}"/>
+                                            <input type="submit" value="${row.title}" class="btn btn-success"/>
+                                        </h6>
                                     </div>
-                                    <div class="rating" style="font-size: 13px">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>                                            </div>
-                                    <div class="item-price">
-                                        <div class="price-box"><span class="regular-price"> <span class="price">₹${row.cost}</span> </span>
+                                    <div class="item-content">
+                                        <div>
+                                            <p class="ellipsis" style="font-size: 13px">
+                                                by ${row.author}</p>
                                         </div>
-                                    </div>
-                                    <div class="action">
+                                        <div class="rating" style="font-size: 13px">
+                                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>                                            </div>
+                                        <div class="item-price">
+                                            <div class="price-box"><span class="regular-price"> <span class="price">₹${row.cost}</span> </span>
+                                            </div>
+                                        </div>
+                                        <div class="action">
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </t:form>
             </c:forEach>
         </div>
 

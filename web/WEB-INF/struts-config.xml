@@ -7,6 +7,8 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="AddToCart" type="dit.AddToCart"/>
+        <form-bean name="DetailBean" type="dit.DetailBean"/>
         <form-bean name="RegisterBean" type="dit.RegisterBean"/>
         <form-bean name="LoginBean" type="dit.LoginBean"/>
     </form-beans>
@@ -28,7 +30,15 @@
             <forward name="loginSuccess" path="/store.jsp"/>
             <forward name="loginFailed" path="/Login.jsp"/>
         </action>
-        <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+        <action input="/store.jsp" name="DetailBean" path="/details" scope="session" type="dit.DetailAction">
+            <forward name="success" path="/details.jsp"/>
+            <forward name="login" path="/Login.jsp"/>
+        </action>
+        <action input="/details.jsp" name="AddToCart" path="/addToCart" scope="session" type="dit.AddToCartAction">
+            <forward name="success" path="/cart.jsp"/>
+            <forward name="fail" path="/welcomeStruts.jsp"/>
+            <forward name="login" path="/Login.jsp"/>
+        </action>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

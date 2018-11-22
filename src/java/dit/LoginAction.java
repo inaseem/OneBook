@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +24,7 @@ public class LoginAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static String SUCCESS = "success";
+    private String id;
 
     /**
      * This is the action called from the Struts framework.
@@ -40,53 +40,50 @@ public class LoginAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        LoginBean login=(LoginBean) form;
-        DataModel model=new DataModel();
-        if(isValid(login.getUsername(), login.getPwd(),model)){
-            SUCCESS="loginSuccess";
+        LoginBean login = (LoginBean) form;
+        DataModel model = new DataModel();
+        if (isValid(login.getUsername(), login.getPwd(), model)) {
+            SUCCESS = "loginSuccess";
             model.setMessage("Succesfully Logged In");
             model.hasError(false);
-//            HttpSession session=request.getSession();
-//            session.setAttribute("name", login.getUsername());
-//            session.setMaxInactiveInterval(600);
-//            Cookie cookie=new Cookie("name",login.getUsername());
-//            cookie.setMaxAge(600);
-//            response.addCookie(cookie);
-        }else{
+            HttpSession session=request.getSession(true);
+            session.setAttribute("userId", id);
+        } else {
             model.hasError(true);
-            SUCCESS="loginFailed";
+            SUCCESS = "loginFailed";
         }
         request.setAttribute("model", model);
         return mapping.findForward(SUCCESS);
     }
-    
-    private boolean isValid(String username,String password,DataModel model){
-        boolean isValid=false;
-        try{
+
+    private boolean isValid(String username, String password, DataModel model) {
+        boolean isValid = false;
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook","root","");
-            PreparedStatement ps=conn.prepareStatement("select*from users where username=?");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook", "root", "");
+            PreparedStatement ps = conn.prepareStatement("select*from users where username=?");
             ps.setString(1, username);
-            if(ps.execute()){
-                ResultSet rs=ps.getResultSet();
-                if(rs.first()){
-                    String pwd=rs.getString(3);
-                    if(pwd.equals(password)){
-                        isValid=true;
+            if (ps.execute()) {
+                ResultSet rs = ps.getResultSet();
+                if (rs.first()) {
+                    String pwd = rs.getString(3);
+                    if (pwd.equals(password)) {
+                        isValid = true;
+                        id=String.valueOf(rs.getInt(1));
                     }
-                }else{
+                } else {
                     model.setMessage("Username Does Not Exist");
-                    isValid=false;
+                    isValid = false;
                 }
-            }else{
+            } else {
                 model.setMessage("Database Error Occured");
-                isValid=false;
+                isValid = false;
             }
             ps.close();
             conn.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             model.setMessage(e.getMessage());
-            isValid=false;
+            isValid = false;
         }
         model.hasError(!isValid);
         return isValid;
