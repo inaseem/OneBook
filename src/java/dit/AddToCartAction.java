@@ -24,6 +24,7 @@ public class AddToCartAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static String SUCCESS = "success";
+    private String error;
 
     /**
      * This is the action called from the Struts framework.
@@ -56,6 +57,7 @@ public class AddToCartAction extends org.apache.struts.action.Action {
             }
             Cart cart = new Cart(items, String.valueOf(total));
             request.setAttribute("cart", cart);
+            request.setAttribute("error", error);
         }
         return mapping.findForward(SUCCESS);
     }
@@ -65,8 +67,8 @@ public class AddToCartAction extends org.apache.struts.action.Action {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook", "root", "");
             PreparedStatement ps = conn.prepareStatement("insert into cart(productId,userId) values(?,?)");
-            ps.setInt(2, Integer.parseInt(userId));
             ps.setInt(1, Integer.parseInt(productId));
+            ps.setInt(2, Integer.parseInt(userId));
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -76,18 +78,11 @@ public class AddToCartAction extends org.apache.struts.action.Action {
         return false;
     }
 
-    private Book getBook(Connection conn, String id) {
+    private Book getBook(ResultSet rs) {
         try {
-            PreparedStatement ps = conn.prepareStatement("select*from books where id=?");
-            ps.setInt(1, Integer.parseInt(id));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Book(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-            }
-            ps.close();
-            conn.close();
+            return new Book(rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
         } catch (Exception e) {
-            return null;
+            error+=e.toString();
         }
         return null;
     }
@@ -97,14 +92,16 @@ public class AddToCartAction extends org.apache.struts.action.Action {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook", "root", "");
-            PreparedStatement ps = conn.prepareStatement("select *,count(*) from cart where userId=? GROUP BY productId");
-            ps.setInt(2, Integer.parseInt(userId));
+            PreparedStatement ps = conn.prepareStatement("select *,COUNT(*) from cart,books WHERE books.id=cart.productId and cart.userId=? GROUP BY cart.productId");
+            ps.setInt(1, Integer.parseInt(userId));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                items.add(new CartItem(rs.getInt(rs.getInt(4)), getBook(conn, String.valueOf(rs.getInt(2)))));
+                Book book=getBook(rs);
+                error+=rs.getObject(4).toString()+rs.getObject(5).toString()+rs.getObject(6).toString()+rs.getObject(7).toString()+rs.getObject(8).toString()+rs.getObject(9).toString()+rs.getObject(10).toString();
+                items.add(new CartItem(rs.getInt(11), book));
             }
         } catch (Exception e) {
-
+            error+=e.toString();
         }
         return items;
     }

@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        ${cart.getItems()}
         <div class="container">
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
@@ -29,33 +28,34 @@
                 </thead>
                 <tbody>
                     <c:forEach var="item" items="${cart.getItems()}">
-                    <tr>
-                        <td data-th="Product">
-                            <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="${item.getBook().getImage()}" alt="..." class="img-responsive"/></div>
-                                <div class="col-sm-10">
-                                    <h4 class="nomargin">${item.getBook().getTitle()}</h4>
-                                    <p>${item.getBook().getAuthor()}</p>
+                        <c:set var="book" value="${item.getBook()}"/>
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="${item.getBook().getImage()}" alt="..." class="img-responsive"/></div>
+                                    <div class="col-sm-10">
+                                        <h4 class="nomargin">${item.getBook().getTitle()}</h4>
+                                        <p>${item.getBook().getAuthor()}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td data-th="Price">${item.getBook().getPrice()}</td>
-                        <td data-th="Quantity">
-                            <input type="number" class="form-control text-center" value="${item.getQuantity()}">
-                        </td>
-                        <td data-th="Subtotal" class="text-center">1.99</td>
-                        <td class="actions" data-th="">
-                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>Delete</button>								
-                        </td>
-                    </tr>
+                            </td>
+                            <td data-th="Price">${item.getBook().getCost()}</td>
+                            <td data-th="Quantity">
+                                <input type="number" class="form-control text-center" value="${item.getQuantity()}">
+                            </td>
+                            <td data-th="Subtotal" class="text-center">${item.getBook().getCost()*item.getQuantity()}</td>
+                            <td class="actions" data-th="">
+                                <t:form action="/delete">
+                                    <input type="hidden" value="${item.getBook().getId()}" name="productId"/>
+                                    <button class="btn btn-danger btn-sm">Delete</button>								
+                                </t:form>
+                            </td>
+                        </tr>
                     </c:forEach>
                 </tbody>
                 <tfoot>
-                    <tr class="visible-xs">
-                        <td class="text-center"><strong>Total ${cart.getTotal()}</strong></td>
-                    </tr>
                     <tr>
-                        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                        <td><a href="store.jsp" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                         <td colspan="2" class="hidden-xs"></td>
                         <td class="hidden-xs text-center"><strong>Total ${cart.getTotal()}</strong></td>
                         <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>

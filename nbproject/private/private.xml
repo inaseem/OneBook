@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/AddToCart.java</file>
             <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/Login.jsp</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/Book.java</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/cart.jsp</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/DetailAction.java</file>
             <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/details.jsp</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/WEB-INF/struts-config.xml</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/LoginAction.java</file>
             <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/store.jsp</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/Layout.jsp</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/web/index.jsp</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/AddToCartAction.java</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/OneBook/src/java/dit/DetailBean.java</file>
         </group>
     </open-files>
 </project-private>
