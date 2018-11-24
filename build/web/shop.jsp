@@ -108,8 +108,9 @@
                                     <li class="nav-item">
                                         <ul class="nav header-info header-logins">
                                             <c:if test="${loggedIn}">
-                                                <li class="nav-item">Welcome <%= request.getSession().getAttribute("username")%></li>
-                                                <li class="nav-item"><a href="#">Logout</a></li>
+                                                <li class="nav-item">Welcome</li>
+                                                <li> <%= request.getSession().getAttribute("username")%> </li>
+                                                <li class="nav-item"><t:form action="/logout"><input  type="submit" class="btn-link" value="Logout"/></t:form></li>
                                                 </c:if>
                                                 <c:if test="${!loggedIn}">
                                                 <li class="nav-item"><a href="#">Login</a></li>

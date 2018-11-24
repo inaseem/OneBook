@@ -28,6 +28,7 @@
         </action>
         <action input="/Login.jsp" name="LoginBean" path="/login" scope="session" type="dit.LoginAction">
             <forward name="loginSuccess" path="/shop.jsp"/>
+
             <forward name="loginFailed" path="/Login.jsp"/>
         </action>
         <action input="/shop.jsp" name="DetailBean" path="/details" scope="session" type="dit.DetailAction">
@@ -43,6 +44,9 @@
             <forward name="success" path="/bookcart.jsp"/>
             <forward name="fail" path="/Fail.jsp"/>
         </action>
+        <action input="/shop.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
+        <action input="/itemdetails.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
+        <action input="/bookcart.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

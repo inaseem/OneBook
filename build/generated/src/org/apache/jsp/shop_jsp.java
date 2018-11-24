@@ -183,10 +183,14 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\n");
-          out.write("                                                <li class=\"nav-item\">Welcome ");
+          out.write("                                                <li class=\"nav-item\">Welcome</li>\n");
+          out.write("                                                <li> ");
           out.print( request.getSession().getAttribute("username"));
+          out.write(" </li>\n");
+          out.write("                                                <li class=\"nav-item\">");
+          if (_jspx_meth_t_form_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_if_0, _jspx_page_context))
+            return;
           out.write("</li>\n");
-          out.write("                                                <li class=\"nav-item\"><a href=\"#\">Logout</a></li>\n");
           out.write("                                                ");
           int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -455,6 +459,32 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
+  private boolean _jspx_meth_t_form_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_if_0, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  t:form
+    org.apache.struts.taglib.html.FormTag _jspx_th_t_form_0 = (org.apache.struts.taglib.html.FormTag) _jspx_tagPool_t_form_action.get(org.apache.struts.taglib.html.FormTag.class);
+    _jspx_th_t_form_0.setPageContext(_jspx_page_context);
+    _jspx_th_t_form_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_if_0);
+    _jspx_th_t_form_0.setAction("/logout");
+    int _jspx_eval_t_form_0 = _jspx_th_t_form_0.doStartTag();
+    if (_jspx_eval_t_form_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("<input  type=\"submit\" class=\"btn-link\" value=\"Logout\"/>");
+        int evalDoAfterBody = _jspx_th_t_form_0.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_t_form_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_0);
+      return true;
+    }
+    _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_0);
+    return false;
+  }
+
   private boolean _jspx_meth_c_if_1(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -514,7 +544,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\" class=\"img-fluid thumb\" alt=\"product-img\" style=\"width: 100%\" />\n");
           out.write("                                                        <div class=\"product-button-wrap text-center\">\n");
           out.write("                                                            ");
-          if (_jspx_meth_t_form_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+          if (_jspx_meth_t_form_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
           out.write("\n");
           out.write("                                                        </div>\n");
@@ -562,17 +592,17 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_t_form_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+  private boolean _jspx_meth_t_form_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  t:form
-    org.apache.struts.taglib.html.FormTag _jspx_th_t_form_0 = (org.apache.struts.taglib.html.FormTag) _jspx_tagPool_t_form_action.get(org.apache.struts.taglib.html.FormTag.class);
-    _jspx_th_t_form_0.setPageContext(_jspx_page_context);
-    _jspx_th_t_form_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_t_form_0.setAction("/details");
-    int _jspx_eval_t_form_0 = _jspx_th_t_form_0.doStartTag();
-    if (_jspx_eval_t_form_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+    org.apache.struts.taglib.html.FormTag _jspx_th_t_form_1 = (org.apache.struts.taglib.html.FormTag) _jspx_tagPool_t_form_action.get(org.apache.struts.taglib.html.FormTag.class);
+    _jspx_th_t_form_1.setPageContext(_jspx_page_context);
+    _jspx_th_t_form_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_t_form_1.setAction("/details");
+    int _jspx_eval_t_form_1 = _jspx_th_t_form_1.doStartTag();
+    if (_jspx_eval_t_form_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
         out.write("                                                                <input type=\"hidden\" name=\"productId\" value=\"");
@@ -580,16 +610,16 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write("\"/>\n");
         out.write("                                                                <input type=\"submit\" class=\"btn cart-btn mr-2 text-uppercase\" value=\"Details\"/>\n");
         out.write("                                                            ");
-        int evalDoAfterBody = _jspx_th_t_form_0.doAfterBody();
+        int evalDoAfterBody = _jspx_th_t_form_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
       } while (true);
     }
-    if (_jspx_th_t_form_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_0);
+    if (_jspx_th_t_form_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_1);
       return true;
     }
-    _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_0);
+    _jspx_tagPool_t_form_action.reuse(_jspx_th_t_form_1);
     return false;
   }
 }
