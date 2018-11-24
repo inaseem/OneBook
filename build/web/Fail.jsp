@@ -23,10 +23,7 @@
                     <h1>Oops!</h1>
                     <!--<h2>404 - The Page can't be found</h2>-->
                     <h2>
-                        <%
-                        DataModel error=(DataModel)request.getAttribute("model");
-                        out.println(error.getMessage());
-                        %>
+                        ${model.getMessage()}
                     </h2>
                 </div>
                 <a href="/OneBook/Login.jsp">Go TO Homepage</a>

@@ -45,7 +45,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cart</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
@@ -66,8 +66,8 @@
                         <tr>
                             <td data-th="Product">
                                 <div class="row">
-                                    <div class="col-sm-2 hidden-xs"><img src="${book.getImage()}" alt="..." class="img-responsive"/></div>
-                                    <div class="col-sm-10">
+                                    <div class="col-md-3"><img src="${book.getImage()}" alt="..." class="img-responsive"/></div>
+                                    <div class="col-sm-9">
                                         <h4 class="nomargin">${book.getTitle()}</h4>
                                         <p>${book.getAuthor()}</p>
                                     </div>
@@ -75,7 +75,7 @@
                             </td>
                             <td data-th="Price">${book.getCost()}</td>
                             <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" value="${item.getQuantity()}">
+                                ${item.getQuantity()}
                             </td>
                             <td data-th="Subtotal" class="text-center">${book.getCost()*item.getQuantity()}</td>
                             <td class="actions" data-th="">

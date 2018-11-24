@@ -36,12 +36,12 @@
         </action>
         <action input="/details.jsp" name="AddToCart" path="/addToCart" scope="session" type="dit.AddToCartAction">
             <forward name="success" path="/cart.jsp"/>
-            <forward name="fail" path="/welcomeStruts.jsp"/>
+            <forward name="fail" path="/Fail.jsp"/>
             <forward name="login" path="/Login.jsp"/>
         </action>
         <action input="/cart.jsp" name="DetailBean" path="/delete" scope="session" type="dit.DeleteAction">
             <forward name="success" path="/cart.jsp"/>
-            <forward name="fail" path="/welcomeStruts.jsp"/>
+            <forward name="fail" path="/Fail.jsp"/>
         </action>
     </action-mappings>
     
