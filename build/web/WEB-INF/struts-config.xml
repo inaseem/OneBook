@@ -27,20 +27,20 @@
             <forward name="registrationFailed" path="/Register.jsp"/>
         </action>
         <action input="/Login.jsp" name="LoginBean" path="/login" scope="session" type="dit.LoginAction">
-            <forward name="loginSuccess" path="/store.jsp"/>
+            <forward name="loginSuccess" path="/shop.jsp"/>
             <forward name="loginFailed" path="/Login.jsp"/>
         </action>
-        <action input="/store.jsp" name="DetailBean" path="/details" scope="session" type="dit.DetailAction">
-            <forward name="success" path="/details.jsp"/>
+        <action input="/shop.jsp" name="DetailBean" path="/details" scope="session" type="dit.DetailAction">
+            <forward name="success" path="/itemdetails.jsp"/>
             <forward name="login" path="/Login.jsp"/>
         </action>
-        <action input="/details.jsp" name="AddToCart" path="/addToCart" scope="session" type="dit.AddToCartAction">
-            <forward name="success" path="/cart.jsp"/>
+        <action input="/itemdetails.jsp" name="AddToCart" path="/addToCart" scope="session" type="dit.AddToCartAction">
+            <forward name="success" path="/bookcart.jsp"/>
             <forward name="fail" path="/Fail.jsp"/>
             <forward name="login" path="/Login.jsp"/>
         </action>
-        <action input="/cart.jsp" name="DetailBean" path="/delete" scope="session" type="dit.DeleteAction">
-            <forward name="success" path="/cart.jsp"/>
+        <action input="/bookcart.jsp" name="DetailBean" path="/delete" scope="session" type="dit.DeleteAction">
+            <forward name="success" path="/bookcart.jsp"/>
             <forward name="fail" path="/Fail.jsp"/>
         </action>
     </action-mappings>
