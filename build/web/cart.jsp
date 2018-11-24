@@ -16,6 +16,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <%
+    if(request.getSession()!=null){
+        if(request.getSession().getAttribute("usetId")==null){
+            response.sendRedirect("Login.jsp");
+        }
+    }else{
+        response.sendRedirect("Login.jsp");
+    }
     ArrayList<CartItem> items = new ArrayList<>();
     try {
         Class.forName("com.mysql.jdbc.Driver");

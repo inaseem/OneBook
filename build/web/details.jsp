@@ -7,6 +7,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <!DOCTYPE html>
+<%
+    if (request.getSession() != null) {
+        if (request.getSession().getAttribute("usetId") == null) {
+            response.sendRedirect("Login.jsp");
+        }
+    } else {
+        response.sendRedirect("Login.jsp");
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +25,7 @@
     <body>
         <%
             out.println(request.getSession().getAttribute("userId"));
-            %>
+        %>
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <center>
@@ -25,17 +34,17 @@
 
                 <div class="table-responsive">
                     <t:form action="/addToCart">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <input type="hidden" name="productId" value="${book.getId()}"/>
-                                    <input type="submit" class="btn btn-success" value="Add To Cart">
-                                </td>
-                            </tr>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="hidden" name="productId" value="${book.getId()}"/>
+                                        <input type="submit" class="btn btn-success" value="Add To Cart">
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </t:form>
                 </div>
             </div>

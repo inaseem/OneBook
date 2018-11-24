@@ -8,9 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%
-    DataModel model = (DataModel) request.getAttribute("model");
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,15 +26,9 @@
             <c:set var="hasError" value="${model.hasError()}"/>
             <c:if test="${hasError}">
                 <div class="error-msg">
-                <i class="fa fa-times-circle"></i>
-                <%
-                    if (model != null) {
-                        if (model.hasError()) {
-                            out.println(model.getMessage());
-                        }
-                    }
-                %>
-            </div>
+                    <i class="fa fa-times-circle"></i>
+                    ${model.getMessage()}
+                </div>
             </c:if>
             <t:form method="POST" action="/login">
                 <h2>student login form</h2>
