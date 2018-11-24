@@ -4,9 +4,43 @@
     Author     : Naseem
 --%>
 
+<%@page import="dit.Cart"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="dit.Book"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="dit.CartItem"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
+<%
+    ArrayList<CartItem> items = new ArrayList<>();
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook", "root", "");
+        PreparedStatement ps = conn.prepareStatement("select *,COUNT(*) from cart,books WHERE books.id=cart.productId and cart.userId=? GROUP BY cart.productId");
+        ps.setInt(1, Integer.parseInt(request.getSession().getAttribute("userId").toString()));
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Book book = new Book(rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+            items.add(new CartItem(rs.getInt(11), book));
+        }
+        ps.close();
+        conn.close();
+        double total = 0;
+        for (CartItem item : items) {
+            total += item.getQuantity() * item.getBook().getCost();
+        }
+        Cart cart = new Cart(items, String.valueOf(total));
+        request.setAttribute("cart", cart);
+    } catch (Exception e) {
+
+    } finally {
+
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,21 +66,21 @@
                         <tr>
                             <td data-th="Product">
                                 <div class="row">
-                                    <div class="col-sm-2 hidden-xs"><img src="${item.getBook().getImage()}" alt="..." class="img-responsive"/></div>
+                                    <div class="col-sm-2 hidden-xs"><img src="${book.getImage()}" alt="..." class="img-responsive"/></div>
                                     <div class="col-sm-10">
-                                        <h4 class="nomargin">${item.getBook().getTitle()}</h4>
-                                        <p>${item.getBook().getAuthor()}</p>
+                                        <h4 class="nomargin">${book.getTitle()}</h4>
+                                        <p>${book.getAuthor()}</p>
                                     </div>
                                 </div>
                             </td>
-                            <td data-th="Price">${item.getBook().getCost()}</td>
+                            <td data-th="Price">${book.getCost()}</td>
                             <td data-th="Quantity">
                                 <input type="number" class="form-control text-center" value="${item.getQuantity()}">
                             </td>
-                            <td data-th="Subtotal" class="text-center">${item.getBook().getCost()*item.getQuantity()}</td>
+                            <td data-th="Subtotal" class="text-center">${book.getCost()*item.getQuantity()}</td>
                             <td class="actions" data-th="">
                                 <t:form action="/delete">
-                                    <input type="hidden" value="${item.getBook().getId()}" name="productId"/>
+                                    <input type="hidden" value="${book.getId()}" name="productId"/>
                                     <button class="btn btn-danger btn-sm">Delete</button>								
                                 </t:form>
                             </td>

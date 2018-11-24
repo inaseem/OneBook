@@ -39,7 +39,10 @@
             <forward name="fail" path="/welcomeStruts.jsp"/>
             <forward name="login" path="/Login.jsp"/>
         </action>
-        <action input="/cart.jsp" name="DetailBean" path="/delete" scope="session" type="dit.DeleteAction"/>
+        <action input="/cart.jsp" name="DetailBean" path="/delete" scope="session" type="dit.DeleteAction">
+            <forward name="success" path="/cart.jsp"/>
+            <forward name="fail" path="/welcomeStruts.jsp"/>
+        </action>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
