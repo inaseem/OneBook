@@ -48,6 +48,7 @@ public class LoginAction extends org.apache.struts.action.Action {
             model.hasError(false);
             HttpSession session=request.getSession(true);
             session.setAttribute("userId", id);
+            session.setAttribute("username", login.getUsername());
         } else {
             model.hasError(true);
             SUCCESS = "loginFailed";

@@ -10,6 +10,13 @@
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
+    <%
+        if (request.getSession(false) == null) {
+            response.sendRedirect("Login.jsp");
+        } else {
+            request.setAttribute("loggedIn", true);
+        }
+    %>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,9 +107,15 @@
                                 <ul class="nav topbar-items pull-right">
                                     <li class="nav-item">
                                         <ul class="nav header-info header-logins">
-                                            <li class="nav-item"><a href="#">Login</a></li>
-                                            <li> or</li>
-                                            <li class="nav-item"><a href="#">Register</a></li>
+                                            <c:if test="${loggedIn}">
+                                                <li class="nav-item">Welcome <%= request.getSession().getAttribute("username")%></li>
+                                                <li class="nav-item"><a href="#">Logout</a></li>
+                                                </c:if>
+                                                <c:if test="${!loggedIn}">
+                                                <li class="nav-item"><a href="#">Login</a></li>
+                                                <li> or</li>
+                                                <li class="nav-item"><a href="#">Register</a></li>
+                                                </c:if>
                                         </ul>
                                     </li>
                                 </ul>

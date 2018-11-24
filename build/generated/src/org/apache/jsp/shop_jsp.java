@@ -12,6 +12,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_t_form_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_sql_setDataSource_var_user_url_password_driver_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_sql_query_var_sql_dataSource_nobody;
@@ -24,6 +25,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   public void _jspInit() {
     _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_t_form_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_sql_setDataSource_var_user_url_password_driver_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_sql_query_var_sql_dataSource_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
@@ -31,6 +33,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   public void _jspDestroy() {
     _jspx_tagPool_c_forEach_var_items.release();
+    _jspx_tagPool_c_if_test.release();
     _jspx_tagPool_t_form_action.release();
     _jspx_tagPool_sql_setDataSource_var_user_url_password_driver_nobody.release();
     _jspx_tagPool_sql_query_var_sql_dataSource_nobody.release();
@@ -68,6 +71,15 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<!doctype html>\n");
       out.write("<html class=\"no-js\" lang=\"zxx\">\n");
+      out.write("    ");
+
+        if (request.getSession(false) == null) {
+            response.sendRedirect("Login.jsp");
+        } else {
+            request.setAttribute("loggedIn", true);
+        }
+    
+      out.write("\n");
       out.write("    <head>\n");
       out.write("        <meta charset=\"utf-8\">\n");
       out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
@@ -161,9 +173,36 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <ul class=\"nav topbar-items pull-right\">\n");
       out.write("                                    <li class=\"nav-item\">\n");
       out.write("                                        <ul class=\"nav header-info header-logins\">\n");
-      out.write("                                            <li class=\"nav-item\"><a href=\"#\">Login</a></li>\n");
-      out.write("                                            <li> or</li>\n");
-      out.write("                                            <li class=\"nav-item\"><a href=\"#\">Register</a></li>\n");
+      out.write("                                            ");
+      //  c:if
+      org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+      _jspx_th_c_if_0.setPageContext(_jspx_page_context);
+      _jspx_th_c_if_0.setParent(null);
+      _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loggedIn}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+      int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
+      if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\n");
+          out.write("                                                <li class=\"nav-item\">Welcome ");
+          out.print( request.getSession().getAttribute("username"));
+          out.write("</li>\n");
+          out.write("                                                <li class=\"nav-item\"><a href=\"#\">Logout</a></li>\n");
+          out.write("                                                ");
+          int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+        return;
+      }
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+      out.write("\n");
+      out.write("                                                ");
+      if (_jspx_meth_c_if_1(_jspx_page_context))
+        return;
+      out.write("\n");
       out.write("                                        </ul>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
@@ -190,7 +229,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <ul class=\"nav navbar-main\">\n");
       out.write("                                                        <li class=\"dropdown\"><a href=\"index.jsp\">Home</a></li>\n");
       out.write("                                                        <li class=\"active dropdown\"><a href=\"shop.jsp\">Shop</a></li>\n");
-      out.write("                                                        <li class=\"dropdown mini-cart-dropdown\"><a href=\"cart.jsp\" class=\"cart-contents\"><i class=\"icon-bag icons\"></i></a></li>\n");
+      out.write("                                                        <li class=\"dropdown mini-cart-dropdown\"><a href=\"bookcart.jsp\" class=\"cart-contents\"><i class=\"icon-bag icons\"></i></a></li>\n");
       out.write("                                                    </ul>\n");
       out.write("                                                </li>\n");
       out.write("                                                <!--List Item-->\n");
@@ -281,7 +320,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"row\">\n");
       out.write("                            <div class=\"col-lg-6 widget text-widget\">\n");
       out.write("                                <div class=\"mb-3\">\n");
-      out.write("                                    <img src=\"images/onebook.png\" class=\"img-fluid\" alt=\"Logo\" width=\"220\" height=\"40\">\n");
+      out.write("                                    <img src=\"images/onebook.png\" class=\"img-fluid mx-0 mb-4\" alt=\"logo\" width=\"186\" height=\"40\">\n");
       out.write("                                </div>\n");
       out.write("                                <!-- Text -->\n");
       out.write("                                <div class=\"pr-5\">\n");
@@ -416,6 +455,36 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
+  private boolean _jspx_meth_c_if_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:if
+    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+    _jspx_th_c_if_1.setPageContext(_jspx_page_context);
+    _jspx_th_c_if_1.setParent(null);
+    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${!loggedIn}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
+    if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      do {
+        out.write("\n");
+        out.write("                                                <li class=\"nav-item\"><a href=\"#\">Login</a></li>\n");
+        out.write("                                                <li> or</li>\n");
+        out.write("                                                <li class=\"nav-item\"><a href=\"#\">Register</a></li>\n");
+        out.write("                                                ");
+        int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+    }
+    if (_jspx_th_c_if_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+      return true;
+    }
+    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+    return false;
+  }
+
   private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -452,7 +521,7 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("                                                    </div>\n");
           out.write("                                                    <div class=\"product-details text-center\">\n");
           out.write("                                                        <div class=\"product-title\">\n");
-          out.write("                                                            <h4 class=\"mb-1\"><a href=\"\" class=\"product-name font-w-600\">");
+          out.write("                                                            <h4 class=\"mb-1\"><a href=\"#\" class=\"product-name font-w-600\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${row.title}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></h4>\n");
           out.write("                                                        </div>\n");
@@ -460,8 +529,10 @@ public final class shop_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${row.author}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</span>\n");
           out.write("                                                        <div class=\"product-pricing mt-1\">\n");
-          out.write("                                                            <del><span class=\"normal-price\">£235.00</span></del>\n");
-          out.write("                                                            <span class=\"offer-price\">");
+          out.write("                                                            <del><span class=\"normal-price\">₹ ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${row.cost-30}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</span></del>\n");
+          out.write("                                                            <span class=\"offer-price\">₹ ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${row.cost}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</span>\n");
           out.write("                                                        </div>\n");
