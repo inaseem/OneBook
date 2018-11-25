@@ -38,29 +38,31 @@ public class DetailAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        if(request.getSession()==null){
-            return mapping.findForward("login");
+        if (request.getSession(false) != null) {
+            if (request.getSession(false).getAttribute("username") == null) {
+                return mapping.findForward("login");
+            }
         }
-        DetailBean bean=(DetailBean)form;
+        DetailBean bean = (DetailBean) form;
         request.setAttribute("book", getBook(bean.getProductId()));
         return mapping.findForward(SUCCESS);
     }
-    
-    private Book getBook(String id){
-         try{
+
+    private Book getBook(String id) {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook","root","");
-            PreparedStatement ps=conn.prepareStatement("select*from books where id=?");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/onebook", "root", "");
+            PreparedStatement ps = conn.prepareStatement("select*from books where id=?");
             ps.setInt(1, Integer.parseInt(id));
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                return new Book(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Book(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
             }
             ps.close();
             conn.close();
-         }catch(Exception e){
-             return null;
-         }
-         return null;
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
     }
 }

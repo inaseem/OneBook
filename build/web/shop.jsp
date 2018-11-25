@@ -8,15 +8,20 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t"%>
-<!doctype html>
-<html class="no-js" lang="zxx">
-    <%
+<%
         if (request.getSession(false) == null) {
-            response.sendRedirect("Login.jsp");
+//            response.sendRedirect("Login.jsp");
         } else {
-            request.setAttribute("loggedIn", true);
+            if (request.getSession().getAttribute("username") != null) {
+                request.setAttribute("loggedIn", true);
+            } else {
+                request.setAttribute("loggedIn", false);
+//                response.sendRedirect("Login.jsp");
+            }
         }
     %>
+<!doctype html>
+<html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -107,16 +112,30 @@
                                 <ul class="nav topbar-items pull-right">
                                     <li class="nav-item">
                                         <ul class="nav header-info header-logins">
-                                            <c:if test="${loggedIn}">
-                                                <li class="nav-item">Welcome</li>
-                                                <li> <%= request.getSession().getAttribute("username")%> </li>
-                                                <li class="nav-item"><t:form action="/logout"><input  type="submit" class="btn-link" value="Logout"/></t:form></li>
-                                                </c:if>
+                                            <li class="nav-item">
                                                 <c:if test="${!loggedIn}">
-                                                <li class="nav-item"><a href="#">Login</a></li>
-                                                <li> or</li>
-                                                <li class="nav-item"><a href="#">Register</a></li>
+                                                    <a href="Login.jsp">Login</a>
                                                 </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    Welcome
+                                                </c:if>
+                                            </li>
+                                            <li>
+                                                <c:if test="${!loggedIn}">
+                                                    or
+                                                </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    <%= request.getSession().getAttribute("username")%>
+                                                </c:if>
+                                            </li>
+                                            <li class="nav-item">
+                                                <c:if test="${!loggedIn}">
+                                                    <a href="Register.jsp">Register</a>
+                                                </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    <t:form action="/logout"><input  type="submit" class="btn-link" value="Logout"/></t:form>
+                                                </c:if>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -141,7 +160,7 @@
                                                 <!--List Item-->
                                                 <li class="list-item">
                                                     <ul class="nav navbar-main">
-                                                        <li class="dropdown"><a href="index.jsp">Home</a></li>
+                                                        <li class="dropdown"><a href="">Home</a></li>
                                                         <li class="active dropdown"><a href="shop.jsp">Shop</a></li>
                                                         <li class="dropdown mini-cart-dropdown"><a href="bookcart.jsp" class="cart-contents"><i class="icon-bag icons"></i></a></li>
                                                     </ul>
@@ -168,7 +187,7 @@
                                     <div class="page-title-inner">
                                         <h1 class="page-title mb-3">Shop</h1>
                                         <div id="breadcrumb" class="breadcrumb">
-                                            <a href="index.jsp">Home</a>
+                                            <a href="">Home</a>
                                             <span class="current">Shop</span>
                                         </div>
                                     </div>

@@ -34,7 +34,10 @@ public class LogoutAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        request.getSession().invalidate();
+//        if(request.getSession(false)!=null){
+        request.getSession(false).setAttribute("username", null);
+        request.getSession(false).invalidate();
+//        }
         return mapping.findForward(SUCCESS);
     }
 }

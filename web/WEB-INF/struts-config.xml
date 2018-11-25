@@ -44,9 +44,15 @@
             <forward name="success" path="/bookcart.jsp"/>
             <forward name="fail" path="/Fail.jsp"/>
         </action>
-        <action input="/shop.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
-        <action input="/itemdetails.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
-        <action input="/bookcart.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" forward="/Login.jsp"/>
+        <action input="/shop.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" >
+            <forward name="success" path="/Login.jsp"/>
+        </action>
+        <action input="/itemdetails.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction" >
+            <forward name="success" path="/Login.jsp"/>
+        </action>
+        <action input="/bookcart.jsp" name="DetailBean" path="/logout" scope="session" type="dit.LogoutAction">
+            <forward name="success" path="/Login.jsp"/>
+        </action>
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

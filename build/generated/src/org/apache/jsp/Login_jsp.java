@@ -96,6 +96,18 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <body data-res-from=\"1025\">\n");
       out.write("        <!--<div class=\"container\">-->\n");
+      out.write("        <div class=\"page-loader\"></div>\n");
+      out.write("        <!--Zmm Wrapper-->\n");
+      out.write("        <div class=\"zmm-wrapper\">\n");
+      out.write("            <a href=\"#\" class=\"zmm-close close\"></a>\n");
+      out.write("            <div class=\"zmm-inner bg-dark typo-white\">\n");
+      out.write("                <div class=\"text-center mobile-logo-part mb-4\">\n");
+      out.write("                    <a href=\"\" class=\"img-before\"><img src=\"images/onebook.png\"/></a>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"zmm-main-nav\">\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
       out.write("        <div class=\"container\">\n");
       out.write("            ");
       if (_jspx_meth_c_set_0(_jspx_page_context))
@@ -216,7 +228,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write("                                                <input id=\"username\" class=\"form-control\" name=\"username\" placeholder=\"Username\" type=\"text\">\n");
         out.write("                                            </div>\n");
         out.write("                                            <div class=\"form-group\">\n");
-        out.write("                                                <input id=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" type=\"password\">\n");
+        out.write("                                                <input id=\"password\" class=\"form-control\" name=\"pwd\" placeholder=\"Password\" type=\"password\">\n");
         out.write("                                            </div>\n");
         out.write("                                        </div>\n");
         out.write("                                    </div>\n");
@@ -229,7 +241,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write("                        <input type=\"reset\" value=\"Reset\" class=\"btn btn-warning\" name=\"reset\" id=\"reset\" />\n");
         out.write("                        <input type=\"submit\" value=\"Login\" class=\"btn btn-success\" name=\"submit\" id=\"submit\" />\n");
         out.write("                    </div>\n");
-        out.write("                    <label style=\"margin-top: 32px\">Already have an account? Login <a href=\"/OneBook/Login.jsp\">Here</a></label>\n");
+        out.write("                    <label style=\"margin-top: 32px\">Don't have an account? Register <a href=\"/OneBook/Register.jsp\">Here</a></label>\n");
         out.write("                ");
         int evalDoAfterBody = _jspx_th_t_form_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

@@ -4,13 +4,19 @@
     Author     : Naseem
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="t" %>
 <%
     if (request.getSession(false) == null) {
         response.sendRedirect("Login.jsp");
     } else {
-        request.setAttribute("loggedIn", true);
+        if (request.getSession().getAttribute("username") != null) {
+            request.setAttribute("loggedIn", true);
+        } else {
+            request.setAttribute("loggedIn", false);
+            response.sendRedirect("Login.jsp");
+        }
     }
 %>
 <!doctype html>
@@ -105,16 +111,30 @@
                                 <ul class="nav topbar-items pull-right">
                                     <li class="nav-item">
                                         <ul class="nav header-info header-logins">
-                                            <c:if test="${loggedIn}">
-                                                <li class="nav-item">Welcome</li>
-                                                li> <%= request.getSession().getAttribute("username")%> </li>
-                                                <li class="nav-item"><t:form action="/logout"><input  type="submit" class="btn-link" value="Logout"/></t:form></li>
-                                            </c:if>
-                                            <c:if test="${!loggedIn}">
-                                                <li class="nav-item"><a href="#">Login</a></li>
-                                                <li> or</li>
-                                                <li class="nav-item"><a href="#">Register</a></li>
-                                            </c:if>
+                                            <li class="nav-item">
+                                                <c:if test="${!loggedIn}">
+                                                    <a href="Login.jsp">Login</a>
+                                                </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    Welcome
+                                                </c:if>
+                                            </li>
+                                            <li>
+                                                <c:if test="${!loggedIn}">
+                                                    or
+                                                </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    <%= request.getSession().getAttribute("username")%>
+                                                </c:if>
+                                            </li>
+                                            <li class="nav-item">
+                                                <c:if test="${!loggedIn}">
+                                                    <a href="Register.jsp">Register</a>
+                                                </c:if>
+                                                <c:if test="${loggedIn}">
+                                                    <t:form action="/logout"><input  type="submit" class="btn-link" value="Logout"/></t:form>
+                                                </c:if>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -139,7 +159,7 @@
                                                 <!--List Item-->
                                                 <li class="list-item">
                                                     <ul class="nav navbar-main">
-                                                        <li class="dropdown"><a href="index.jsp">Home</a></li>
+                                                        <li class="dropdown"><a href="">Home</a></li>
                                                         <li class="active dropdown"><a href="shop.jsp">Shop</a></li>
                                                         <li class="dropdown mini-cart-dropdown"><a href="bookcart.jsp" class="cart-contents"><i class="icon-bag icons"></i></a></li>
                                                     </ul>
@@ -166,7 +186,7 @@
                                     <div class="page-title-inner">
                                         <h1 class="page-title mb-3">Shop</h1>
                                         <div id="breadcrumb" class="breadcrumb">
-                                            <a href="index-2.html">Home</a>
+                                            <a href="">Home</a>
                                             <span class="current">Shop</span>
                                         </div>
                                     </div>
@@ -221,8 +241,8 @@
                                                     <h2 class="single-product-name">${book.getTitle()}</h2>
                                                 </div>
                                                 <div class="product-pricing my-4">
-                                                    <del><span class="normal-price">${book.getCost()-30}</span></del>
-                                                    <span class="offer-price">${book.getCost()}</span>
+                                                    <del><span class="normal-price">₹${book.getCost()-30}</span></del>
+                                                    <span class="offer-price">₹${book.getCost()}</span>
                                                 </div>
                                                 <div class="short-desc">
                                                     <p>by ${book.getAuthor()}</p>
