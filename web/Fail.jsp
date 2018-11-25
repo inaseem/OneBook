@@ -26,7 +26,7 @@
                         ${model.getMessage()}
                     </h2>
                 </div>
-                <a href="/OneBook/Login.jsp">Go TO Homepage</a>
+                Go To <a href="/OneBook/Login.jsp">Home</a>
             </div>
         </div>
     </body>

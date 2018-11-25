@@ -176,6 +176,25 @@
                 <!-- Checkout Form -->
             </div>
         </div>
+        <!--CTA Section-->
+        <div class="cta-section typo-white">
+            <div class="container">
+                <!-- CTA Wrap -->
+                <div class="cta-wrapper cta-1 bg-theme pad-40 b-radius-10">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h2 class="align-self-center mb-0">Find The Book That Best Suits Your Soul</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row -->
+                </div>
+                <!-- CTA Wrap -->
+            </div>
+            <!-- Container -->
+        </div>
+        <!--CTA Section-->
         <!--</div>-->
         <footer id="footer" class="footer footer-1 bg-dark">
             <!--Footer Widgets Columns Posibilities 4-->
