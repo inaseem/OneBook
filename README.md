@@ -3,7 +3,7 @@
 **A Project Made For Java Assignment**
 
 *Login*
-<img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/login.PNG">
+<blockquote class="imgur-embed-pub" lang="en" data-id="5cqyIBs"><a href="//imgur.com/5cqyIBs">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 *Register*
 <img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/register.PNG">
