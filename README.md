@@ -2,7 +2,17 @@
 
 **A Project Made For Java Assignment**
 
-*Check out screenshots <a href="https://imgur.com/a/m7XuTX9">Here</a>*
+*Login*
+<img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/login.PNG">
+
+*Register*
+<img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/register.PNG">
+
+*Cart*
+<img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/cart.PNG">
+
+*Shop*
+<img src="https://raw.githubusercontent.com/naseemali925/OneBook/master/screenshots/shop.PNG">
 
 **Technologies Used**
 <ul>
